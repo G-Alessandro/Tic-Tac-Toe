@@ -7,9 +7,42 @@
 body {
     background-color: aqua;
     display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 2fr;
+}
+
+.playerChoice {
+    grid-area: 2 / 1 / 2 / 2 ;
+    justify-self: end;
+}
+
+.titleUseX, .titleUseO {
+    margin-bottom: .5rem;
+}
+
+.choicePlayer1 {
+    margin-bottom: 1rem;
+}
+
+.choicePlayer2 {
+    margin-bottom: 3rem;
+}
+
+.scoreboard {
+    grid-area: 1 / 2 / 2 / 3;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+    margin: 1rem;
+}
+
+.score1,.score2 {
+    text-align: center;
+    font-size: 2rem;
 }
 
 #gameBoard {
+    grid-area: 2 / 2 / 3 / 3;
     width: 25rem;
     height: 25rem;
     display: grid;
@@ -27,6 +60,18 @@ body {
 }
 
 button {
-    width: 5rem;
-    height: 2rem;
+    width: 6rem;
+    height: 2.5rem;
+    border-radius: .5rem;
+}
+
+.restartDiv {
+    grid-area: 3 / 2 / 4 / 3;
+    justify-self: center;
+    margin-top: 1rem;
+}
+
+.restartBtn {
+    width: 8rem;
+    height: 3rem;
 }
