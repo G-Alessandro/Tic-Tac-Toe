@@ -13,7 +13,6 @@ const playerTwo = {
 const functionModule = (() => {
   const gameBoard = document.getElementById('gameBoard');
   const restartBtn = document.getElementById('restartBtn');
-  const selectDiv = gameBoard.querySelectorAll('div');
   const score1 = document.getElementById('score1');
   const tieScore = document.getElementById('tieScore');
   const score2 = document.getElementById('score2');
@@ -27,6 +26,7 @@ const functionModule = (() => {
 
   const restart = () => {
     restartBtn.addEventListener('click', () => {
+      const selectDiv = gameBoard.querySelectorAll('div');
       selectDiv.forEach((div) => div.textContent = '');
       scorePlayer1 = 0;
       tie = 0;
@@ -81,7 +81,7 @@ const functionModule = (() => {
     || diagResTwo === 'xxx') {
       scorePlayer1++;
       playerSign = ['', '', '', '', '', '', '', '', ''];
-      winEnd();
+      setTimeout(winEnd, 200);
     }
     if (playerSign.slice(0, 3).join('') === 'ooo'
     || playerSign.slice(3, 6).join('') === 'ooo'
@@ -93,13 +93,13 @@ const functionModule = (() => {
     || diagResTwo === 'ooo') {
       scorePlayer2++;
       playerSign = ['', '', '', '', '', '', '', '', ''];
-      winEnd();
+      setTimeout(winEnd, 200);
     }
 
     if (tieEnd() === 9) {
       tie++;
       playerSign = ['', '', '', '', '', '', '', '', ''];
-      winEnd();
+      setTimeout(winEnd, 200);
     }
 
     score1.textContent = scorePlayer1;
