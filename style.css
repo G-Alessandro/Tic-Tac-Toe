@@ -31,12 +31,12 @@ body {
 .scoreboard {
     grid-area: 1 / 2 / 2 / 3;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     justify-items: center;
     margin: 1rem;
 }
 
-#score1,#score2 {
+#score1,#score2,#tieScore {
     text-align: center;
     font-size: 2rem;
 }

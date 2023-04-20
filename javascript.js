@@ -13,17 +13,20 @@ const playerTwo = {
 const functionModule = (() => {
   const gameBoard = document.getElementById('gameBoard');
   const restartBtn = document.getElementById('restartBtn');
+  const selectDiv = gameBoard.querySelectorAll('div');
   const score1 = document.getElementById('score1');
+  const tieScore = document.getElementById('tieScore');
   const score2 = document.getElementById('score2');
   let scorePlayer1 = 0;
+  let tie = 0;
   let scorePlayer2 = 0;
   score1.textContent = scorePlayer1;
+  tieScore.textContent = tie;
   score2.textContent = scorePlayer2;
   let playerSign = ['', '', '', '', '', '', '', '', ''];
 
   const restart = () => {
     restartBtn.addEventListener('click', () => {
-      const selectDiv = gameBoard.querySelectorAll('div');
       selectDiv.forEach((div) => div.textContent = '');
       scorePlayer1 = 0;
       scorePlayer2 = 0;
@@ -31,6 +34,11 @@ const functionModule = (() => {
       score2.textContent = scorePlayer2;
       playerSign = ['', '', '', '', '', '', '', '', ''];
     });
+  };
+
+  const winEnd = () => {
+    const selectDiv = gameBoard.querySelectorAll('div');
+    selectDiv.forEach((div) => div.textContent = '');
   };
 
   const endGame = () => {
@@ -61,6 +69,7 @@ const functionModule = (() => {
     || diagResTwo === 'xxx') {
       scorePlayer1++;
       playerSign = ['', '', '', '', '', '', '', '', ''];
+      winEnd();
     }
     if (playerSign.slice(0, 3).join('') === 'ooo'
     || playerSign.slice(3, 6).join('') === 'ooo'
@@ -73,6 +82,8 @@ const functionModule = (() => {
       scorePlayer2++;
       playerSign = ['', '', '', '', '', '', '', '', ''];
     }
+
+    
     score1.textContent = scorePlayer1;
     score2.textContent = scorePlayer2;
     console.log(scorePlayer1);
@@ -105,11 +116,11 @@ const functionModule = (() => {
           squareDiv.textContent = 'X';
           playerSign.splice(i, 1, 'x');
         }
-        if (functionModule.signTotal() === true) {
+        if (signTotal() === true) {
           squareDiv.textContent = 'O';
           playerSign.splice(i, 1, 'o');
         }
-        if (functionModule.signTotal() === false) {
+        if (signTotal() === false) {
           squareDiv.textContent = 'X';
           playerSign.splice(i, 1, 'x');
         }
@@ -119,7 +130,7 @@ const functionModule = (() => {
   };
 
   return {
-    endGame, signTotal, assignSign, restart,
+    endGame, signTotal, assignSign, restart, winEnd,
   };
 })();
 
