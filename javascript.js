@@ -29,11 +29,23 @@ const functionModule = (() => {
     restartBtn.addEventListener('click', () => {
       selectDiv.forEach((div) => div.textContent = '');
       scorePlayer1 = 0;
+      tie = 0;
       scorePlayer2 = 0;
       score1.textContent = scorePlayer1;
+      tieScore.textContent = tie;
       score2.textContent = scorePlayer2;
       playerSign = ['', '', '', '', '', '', '', '', ''];
     });
+  };
+
+  const tieEnd = () => {
+    let x = 0;
+    for (let i = 0; i < 9; i++) {
+      if (playerSign[i] !== '') {
+        x++;
+      }
+    }
+    return x;
   };
 
   const winEnd = () => {
@@ -81,10 +93,17 @@ const functionModule = (() => {
     || diagResTwo === 'ooo') {
       scorePlayer2++;
       playerSign = ['', '', '', '', '', '', '', '', ''];
+      winEnd();
     }
 
-    
+    if (tieEnd() === 9) {
+      tie++;
+      playerSign = ['', '', '', '', '', '', '', '', ''];
+      winEnd();
+    }
+
     score1.textContent = scorePlayer1;
+    tieScore.textContent = tie;
     score2.textContent = scorePlayer2;
     console.log(scorePlayer1);
     console.log(scorePlayer2);
