@@ -73,7 +73,7 @@ button {
     margin-top: 1rem;
 }
 
-.restartBtn {
+#restartBtn {
     width: 8rem;
     height: 3rem;
 }

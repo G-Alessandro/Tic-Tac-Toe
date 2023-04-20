@@ -11,13 +11,27 @@ const playerTwo = {
 };
 
 const functionModule = (() => {
-  let scorePlayer1 = 0;
-  let scorePlayer2 = 0;
+  const gameBoard = document.getElementById('gameBoard');
+  const restartBtn = document.getElementById('restartBtn');
   const score1 = document.getElementById('score1');
   const score2 = document.getElementById('score2');
+  let scorePlayer1 = 0;
+  let scorePlayer2 = 0;
   score1.textContent = scorePlayer1;
   score2.textContent = scorePlayer2;
-  const playerSign = ['', '', '', '', '', '', '', '', ''];
+  let playerSign = ['', '', '', '', '', '', '', '', ''];
+
+  const restart = () => {
+    restartBtn.addEventListener('click', () => {
+      const selectDiv = gameBoard.querySelectorAll('div');
+      selectDiv.forEach((div) => div.textContent = '');
+      scorePlayer1 = 0;
+      scorePlayer2 = 0;
+      score1.textContent = scorePlayer1;
+      score2.textContent = scorePlayer2;
+      playerSign = ['', '', '', '', '', '', '', '', ''];
+    });
+  };
 
   const endGame = () => {
     // 0-2    3-5    6-8   0-3-6   1-4-7   2-5-8   0-4-8   2-4-6
@@ -46,6 +60,7 @@ const functionModule = (() => {
     || diagResOne === 'xxx'
     || diagResTwo === 'xxx') {
       scorePlayer1++;
+      playerSign = ['', '', '', '', '', '', '', '', ''];
     }
     if (playerSign.slice(0, 3).join('') === 'ooo'
     || playerSign.slice(3, 6).join('') === 'ooo'
@@ -56,49 +71,13 @@ const functionModule = (() => {
     || diagResOne === 'ooo'
     || diagResTwo === 'ooo') {
       scorePlayer2++;
+      playerSign = ['', '', '', '', '', '', '', '', ''];
     }
-
-    // for (let a = 0; a < 6; a + 3) {
-    //   const first = playerSign[a];
-    //   const second = playerSign[a + 1];
-    //   const third = playerSign[a + 2];
-    //   const indexConcat = first + second + third;
-    //   if (playerSign.slice(a, (a + 3)).join('') === 'xxx') {
-    //     scorePlayer1++;
-    //   }
-    //   if (playerSign.slice(a, (a + 3)).join('') === 'ooo') {
-    //     scorePlayer2++;
-    //   }
-    //   if (indexConcat !== 'xxx' || indexConcat !== 'ooo') { break; }
-    // }
-    // for (let e = 0; e < 2; e++) {
-    //   const first = playerSign[e];
-    //   const second = playerSign[e + 3];
-    //   const third = playerSign[e + 6];
-    //   const indexConcat = first + second + third;
-    //   if (indexConcat === 'xxx') {
-    //     scorePlayer1++;
-    //   }
-    //   if (indexConcat === 'ooo') {
-    //     scorePlayer2++;
-    //   }
-    // }
-    // for (let d = 0; d < 2; d + 2) {
-    //   const first = playerSign[d];
-    //   const second = playerSign[4];
-    //   const third = playerSign[8 - d];
-    //   const indexConcat = first + second + third;
-    //   if (indexConcat === 'xxx') {
-    //     scorePlayer1++;
-    //   }
-    //   if (indexConcat === 'ooo') {
-    //     scorePlayer2++;
-    //   }
-    // }
     score1.textContent = scorePlayer1;
     score2.textContent = scorePlayer2;
     console.log(scorePlayer1);
     console.log(scorePlayer2);
+    console.log(playerSign);
   };
 
   const signTotal = () => {
@@ -117,7 +96,6 @@ const functionModule = (() => {
   };
 
   const assignSign = () => {
-    const gameBoard = document.getElementById('gameBoard');
     for (let i = 0; i < 9; i++) {
       const squareDiv = document.createElement('div');
       squareDiv.classList.add(`square${i}`);
@@ -139,7 +117,11 @@ const functionModule = (() => {
       });
     }
   };
-  return { endGame, signTotal, assignSign };
+
+  return {
+    endGame, signTotal, assignSign, restart,
+  };
 })();
 
 functionModule.assignSign();
+functionModule.restart();
