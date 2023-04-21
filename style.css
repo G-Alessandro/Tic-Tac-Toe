@@ -8,12 +8,14 @@ body {
     background-color: #3ce2ff;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 2fr;
+    grid-template-rows: 1fr;
 }
 
 .playerChoice {
     grid-area: 2 / 1 / 2 / 2 ;
     justify-self: end;
+    display: grid;
+    grid-template-rows: 1fr .5fr;
 }
 
 .titleUseX,
@@ -25,8 +27,44 @@ body {
     margin-bottom: 1rem;
 }
 
+.containerPlayer1,.containerPlayer2 {
+    display: grid;
+    font-size: 1.2rem;
+    font-weight: 900;
+}
+
+label {
+    text-align: center;
+    background-color: rgb(125, 247, 176);
+    border: .2rem solid black;
+    border-radius: .3rem;
+    margin-bottom: .5rem;
+}
+
+.label2 {
+    background-color: rgb(235, 247, 125);
+}
+
+input {
+    height: 1.5rem;
+    font-size: 1rem;
+    font-weight: 900;
+    text-indent: 1rem;
+    border-radius: .5rem;
+    border: .2rem solid;
+}
+
+input:hover,input:focus {
+    border-color: orange;
+    outline: none;
+}
+
 .choicePlayer2 {
     margin-bottom: 3rem;
+}
+
+.btnStart {
+    justify-self: center;
 }
 
 .scoreboard {
@@ -59,14 +97,19 @@ body {
 }
 
 .playerTurn {
-    border: .5rem solid orange;
+    border: .3rem solid orange;
+    box-shadow: 0 0 .3rem rgb(226, 147, 0);
 }
 
-#score1,
-#score2,
-#tieScore {
+.score1,
+.tieScore,
+.score2 {
     text-align: center;
     font-size: 2rem;
+}
+
+.winColor {
+    color: orange;
 }
 
 #gameBoard {
@@ -77,7 +120,6 @@ body {
     justify-self: center;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
-    background-color: blue;
     border: .2rem solid;
     border-radius: .4rem;
     box-shadow: 0 0 .3rem black;

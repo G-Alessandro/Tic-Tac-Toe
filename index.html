@@ -10,29 +10,40 @@
 </head>
 <body>
     <div class="playerChoice">
-        <div class="choicePlayer1">
-            <h2 class="titleUseX">Use X (starts first)</h2>
-            <button class="btnPlayer1">Player 1</button>
-            <button>AI</button>
+        <div class="playerNameContainer">
+            <div class="choicePlayer1">
+                <h2 class="titleUseX">Use X (starts first)</h2>
+                <div class="containerPlayer1">
+                    <label for="namePlayer1" class="label1">Enter Player 1 Name</label>
+                    <input type="text" id="namePlayer1">
+                </div>
+                <!-- <button class="btnPlayer1">Player 1</button>
+                <button>AI</button> -->
+            </div>
+            <div class="choicePlayer2">
+                <h2 class="titleUseO">Use O</h2>
+                <div class="containerPlayer2">
+                    <label for="namePlayer2" class="label2">Enter Player 2 Name</label>
+                    <input type="text" id="namePlayer2">
+                </div>
+            </div>
+            <!-- <button class="btnPlayer2">Player 2</button>
+            <button>AI</button> -->
         </div>
-        <div class="choicePlayer2">
-            <h2 class="titleUseO">Use O</h2>
-            <button class="btnPlayer2">Player 2</button>
-            <button>AI</button>
-        </div>
+        <button class="btnStart">Start</button>
     </div>
     <div class="scoreboard">
-        <div class="scorePlayer1">
+        <div id="scorePlayer1" class="scorePlayer1">
             <h2>Player 1</h2>
-            <div id="score1"></div>
+            <div id="score1" class="score1"></div>
         </div>
-        <div class="tiePlayers">
+        <div id="tiePlayers" class="tiePlayers">
             <h2>Tie</h2>
-            <div id="tieScore"></div>
+            <div id="tieScore" class="tieScore"></div>
         </div>
-        <div class="scorePlayer2">
+        <div id="scorePlayer2" class="scorePlayer2">
             <h2>Player 2</h2>
-            <div id="score2"></div>
+            <div id="score2" class="score2"></div>
         </div>
     </div>
     <div id="gameBoard">

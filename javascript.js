@@ -12,6 +12,9 @@ const playerTwo = {
 
 const functionModule = (() => {
   const gameBoard = document.getElementById('gameBoard');
+  const divPlayer1 = document.getElementById('scorePlayer1');
+  const divTie = document.getElementById('tiePlayers');
+  const divPlayer2 = document.getElementById('scorePlayer2');
   const restartBtn = document.getElementById('restartBtn');
   const score1 = document.getElementById('score1');
   const tieScore = document.getElementById('tieScore');
@@ -82,7 +85,10 @@ const functionModule = (() => {
       scorePlayer1++;
       playerSign = ['', '', '', '', '', '', '', '', ''];
       setTimeout(winEnd, 200);
+      divPlayer2.classList.toggle('playerTurn');
+      divPlayer1.classList.toggle('playerTurn');
     }
+    
     if (playerSign.slice(0, 3).join('') === 'ooo'
     || playerSign.slice(3, 6).join('') === 'ooo'
     || playerSign.slice(6, 9).join('') === 'ooo'
@@ -128,9 +134,13 @@ const functionModule = (() => {
   const assignSign = () => {
     for (let i = 0; i < 9; i++) {
       const squareDiv = document.createElement('div');
-      squareDiv.classList.add(`square${i}`);
+      squareDiv.classList.add('square');
       gameBoard.appendChild(squareDiv);
+      divPlayer1.classList.toggle('playerTurn');
       squareDiv.addEventListener('click', () => {
+        if (divTie.classList.toggle('playerTurn') === true) {
+          divTie.classList.toggle('playerTurn');
+        }
         if (playerSign[0] === '') {
           squareDiv.textContent = 'X';
           playerSign.splice(i, 1, 'x');
@@ -138,6 +148,8 @@ const functionModule = (() => {
         if (signTotal() === true) {
           squareDiv.textContent = 'O';
           playerSign.splice(i, 1, 'o');
+          divPlayer2.classList.toggle('playerTurn');
+          divPlayer1.classList.toggle('playerTurn');
         }
         if (signTotal() === false) {
           squareDiv.textContent = 'X';
