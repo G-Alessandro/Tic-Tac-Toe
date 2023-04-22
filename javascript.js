@@ -1,24 +1,13 @@
-const playerOne = {
-  name: 'player1',
-  marker: 'X',
-  point: '',
-};
-
-const playerTwo = {
-  name: 'player2',
-  marker: 'X',
-  point: '',
-};
-
 const functionModule = (() => {
   const gameBoard = document.getElementById('gameBoard');
   const divPlayer1 = document.getElementById('scorePlayer1');
   const divTie = document.getElementById('tiePlayers');
   const divPlayer2 = document.getElementById('scorePlayer2');
-  const restartBtn = document.getElementById('restartBtn');
   const score1 = document.getElementById('score1');
   const tieScore = document.getElementById('tieScore');
   const score2 = document.getElementById('score2');
+  const btnStart = document.getElementById('btnStart');
+  const restartBtn = document.getElementById('restartBtn');
   let scorePlayer1 = 0;
   let tie = 0;
   let scorePlayer2 = 0;
@@ -88,7 +77,7 @@ const functionModule = (() => {
       divPlayer2.classList.toggle('playerTurn');
       divPlayer1.classList.toggle('playerTurn');
     }
-    
+
     if (playerSign.slice(0, 3).join('') === 'ooo'
     || playerSign.slice(3, 6).join('') === 'ooo'
     || playerSign.slice(6, 9).join('') === 'ooo'
@@ -111,9 +100,6 @@ const functionModule = (() => {
     score1.textContent = scorePlayer1;
     tieScore.textContent = tie;
     score2.textContent = scorePlayer2;
-    console.log(scorePlayer1);
-    console.log(scorePlayer2);
-    console.log(playerSign);
   };
 
   const signTotal = () => {
@@ -160,10 +146,37 @@ const functionModule = (() => {
     }
   };
 
+  const fakeBoard = () => {
+    gameBoard.classList.toggle('fakeGameBoard');
+    gameBoard.textContent = 'Click Start to Play';
+  };
+
+  const start = () => {
+    btnStart.addEventListener('click', () => {
+      gameBoard.classList.toggle('fakeGameBoard');
+      gameBoard.textContent = '';
+      const namePlayer1 = document.getElementById('namePlayer1').value;
+      const namePlayer2 = document.getElementById('namePlayer2').value;
+      const scorePlayerName1 = document.getElementById('scorePlayerName1');
+      const scorePlayerName2 = document.getElementById('scorePlayerName2');
+      assignSign();
+      scorePlayerName1.textContent = namePlayer1;
+      scorePlayerName2.textContent = namePlayer2;
+      if (namePlayer1 === '') {
+        scorePlayerName1.textContent = 'Player 1';
+      }
+      if (namePlayer2 === '') {
+        scorePlayerName2.textContent = 'Player 2';
+      }
+    }, { once: true });
+  };
+
   return {
-    endGame, signTotal, assignSign, restart, winEnd,
+    endGame, signTotal, assignSign, restart, winEnd, start, fakeBoard,
   };
 })();
 
-functionModule.assignSign();
+// functionModule.assignSign();
+functionModule.fakeBoard();
+functionModule.start();
 functionModule.restart();

@@ -112,7 +112,7 @@ input:hover,input:focus {
     color: orange;
 }
 
-#gameBoard {
+.gameBoard {
     grid-area: 2 / 2 / 3 / 3;
     width: 25rem;
     height: 25rem;
@@ -123,6 +123,16 @@ input:hover,input:focus {
     border: .2rem solid;
     border-radius: .4rem;
     box-shadow: 0 0 .3rem black;
+}
+
+.fakeGameBoard {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    background-color: white;
+    font-size: 4.5rem;
+    text-align: center;
+    align-items: center;
 }
 
 [class^= square] {
