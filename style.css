@@ -46,7 +46,9 @@ label {
 }
 
 input {
+    width: 9rem;
     height: 1.5rem;
+    justify-self: center;
     font-size: 1rem;
     font-weight: 900;
     text-indent: 1rem;
@@ -70,7 +72,7 @@ input:hover,input:focus {
 .scoreboard {
     grid-area: 1 / 2 / 2 / 3;
     display: grid;
-    grid-template-columns: 1fr .9fr 1fr;
+    grid-template-columns: 1fr .5fr 1fr;
     justify-items: center;
     margin: 1rem;
 }
@@ -78,10 +80,17 @@ input:hover,input:focus {
 .scorePlayer1,
 .tiePlayers,
 .scorePlayer2 {
+    width: 7.5rem;
+    height: 4rem;
+    text-align: center;
     border: .3rem solid;
     border-radius: .4rem;
     padding: .5rem .5rem 0;
     box-shadow: 0 0 .3rem black;
+}
+
+.tiePlayers {
+    width: fit-content;
 }
 
 .scorePlayer1 {
@@ -99,6 +108,11 @@ input:hover,input:focus {
 .playerTurn {
     border: .3rem solid orange;
     box-shadow: 0 0 .3rem rgb(226, 147, 0);
+}
+
+.tieEnd {
+    border: .3rem solid rgb(226, 45, 0);
+    box-shadow: 0 0 .3rem rgb(226, 45, 0);
 }
 
 .score1,
