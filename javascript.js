@@ -16,20 +16,6 @@ const functionModule = (() => {
   score2.textContent = scorePlayer2;
   let playerSign = ['', '', '', '', '', '', '', '', ''];
 
-  const restart = () => {
-    restartBtn.addEventListener('click', () => {
-      const selectDiv = gameBoard.querySelectorAll('div');
-      selectDiv.forEach((div) => div.textContent = '');
-      scorePlayer1 = 0;
-      tie = 0;
-      scorePlayer2 = 0;
-      score1.textContent = scorePlayer1;
-      tieScore.textContent = tie;
-      score2.textContent = scorePlayer2;
-      playerSign = ['', '', '', '', '', '', '', '', ''];
-    });
-  };
-
   const tieEnd = () => {
     let x = 0;
     for (let i = 0; i < 9; i++) {
@@ -122,7 +108,7 @@ const functionModule = (() => {
       const squareDiv = document.createElement('div');
       squareDiv.classList.add('square');
       gameBoard.appendChild(squareDiv);
-      divPlayer1.classList.toggle('playerTurn');
+      divPlayer1.classList.add('playerTurn');
       squareDiv.addEventListener('click', () => {
         if (divTie.classList.toggle('playerTurn') === true) {
           divTie.classList.toggle('playerTurn');
@@ -134,14 +120,17 @@ const functionModule = (() => {
         if (signTotal() === true) {
           squareDiv.textContent = 'O';
           playerSign.splice(i, 1, 'o');
-          divPlayer2.classList.toggle('playerTurn');
-          divPlayer1.classList.toggle('playerTurn');
+          divPlayer2.classList.remove('playerTurn');
+          divPlayer1.classList.add('playerTurn');
         }
         if (signTotal() === false) {
           squareDiv.textContent = 'X';
           playerSign.splice(i, 1, 'x');
+          divPlayer1.classList.remove('playerTurn');
+          divPlayer2.classList.add('playerTurn');
         }
         endGame();
+        console.log(playerSign);
       });
     }
   };
@@ -171,12 +160,25 @@ const functionModule = (() => {
     }, { once: true });
   };
 
+  const restart = () => {
+    restartBtn.addEventListener('click', () => {
+      const selectDiv = gameBoard.querySelectorAll('div');
+      selectDiv.forEach((div) => div.textContent = '');
+      scorePlayer1 = 0;
+      tie = 0;
+      scorePlayer2 = 0;
+      score1.textContent = scorePlayer1;
+      tieScore.textContent = tie;
+      score2.textContent = scorePlayer2;
+      playerSign = ['', '', '', '', '', '', '', '', ''];
+    });
+  };
+
   return {
     endGame, signTotal, assignSign, restart, winEnd, start, fakeBoard,
   };
 })();
 
-// functionModule.assignSign();
 functionModule.fakeBoard();
 functionModule.start();
 functionModule.restart();
