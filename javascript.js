@@ -197,7 +197,7 @@ const functionModule = (() => {
   };
 
   return {
-    endGame, signTotal, assignSign, restart, winEnd, start, fakeBoard,
+    endGame, signTotal, assignSign, restart, winEnd, start, fakeBoard, winScore1, winScore2,
   };
 })();
 
