@@ -38,6 +38,7 @@ label {
     background-color: rgb(125, 247, 176);
     border: .2rem solid black;
     border-radius: .3rem;
+    padding: .2rem;
     margin-bottom: .5rem;
 }
 
@@ -59,6 +60,11 @@ input {
 input:hover,input:focus {
     border-color: orange;
     outline: none;
+}
+
+.charactersMax {
+    font-size: .8rem;
+    justify-self: center;
 }
 
 .choicePlayer2 {
@@ -124,6 +130,11 @@ input:hover,input:focus {
 
 .winColor {
     color: orange;
+    font-weight: 900;
+}
+
+.winColor2 {
+    border-color: black;
 }
 
 .gameBoard {

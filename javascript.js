@@ -26,6 +26,17 @@ const functionModule = (() => {
     return x;
   };
 
+  const winScore1 = () => {
+    divPlayer1.classList.add('winColor');
+    score1.textContent = 'WIN';
+  };
+
+  const winScore2 = () => {
+    divPlayer2.classList.add('winColor');
+    divPlayer2.classList.add('winColor2');
+    score2.textContent = 'WIN';
+  };
+
   const winEnd = () => {
     const selectDiv = gameBoard.querySelectorAll('div');
     selectDiv.forEach((div) => div.textContent = '');
@@ -59,9 +70,11 @@ const functionModule = (() => {
     || diagResTwo === 'xxx') {
       scorePlayer1 += 1;
       playerSign = ['', '', '', '', '', '', '', '', ''];
-      setTimeout(winEnd, 200);
+      setTimeout(winEnd, 300);
+      setTimeout(winScore1, 200);
       divPlayer1.classList.add('playerTurn');
       divPlayer2.classList.remove('playerTurn');
+      divPlayer1.classList.remove('winColor');
     }
 
     if (playerSign.slice(0, 3).join('') === 'ooo'
@@ -74,7 +87,8 @@ const functionModule = (() => {
     || diagResTwo === 'ooo') {
       scorePlayer2 += 1;
       playerSign = ['', '', '', '', '', '', '', '', ''];
-      setTimeout(winEnd, 200);
+      setTimeout(winEnd, 300);
+      setTimeout(winScore2, 200);
     }
 
     if (tieEnd() === 9) {
@@ -113,6 +127,9 @@ const functionModule = (() => {
       gameBoard.appendChild(squareDiv);
       divPlayer1.classList.add('playerTurn');
       squareDiv.addEventListener('click', () => {
+        divPlayer1.classList.remove('winColor');
+        divPlayer2.classList.remove('winColor');
+        divPlayer2.classList.remove('winColor2');
         if (divTie.classList.toggle('tieEnd') === true) {
           divTie.classList.toggle('tieEnd');
         }
